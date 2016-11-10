@@ -6,7 +6,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 
 const env = require('../config/env');
-const debug = require('debug')('my-app:sequelize'); // Change this to your debug string
+const debug = require('debug')('comics-archiver-node:sequelize'); // Change this to your debug string
 
 module.exports = loadModels(__dirname, '');
 
@@ -24,9 +24,7 @@ function loadModels(folder, prefix) {
         _.assign( {}, options, {
           host: env.DB_HOST,
           dialect: env.DB_DIALECT,
-          define: {
-            schema: env.DB_SCHEMA || 'dbo',
-          },
+          storage: env.DB_STORAGE,
         })
     );
 

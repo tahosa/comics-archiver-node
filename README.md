@@ -1,10 +1,9 @@
-express-swagger-template
-========================
+Webcomics Archiver
+==================
 
-This is a boilerplate project for use in creating RESTful web applications based
-on NodeJS using the Express web server and Swagger (OpenAPI) API definitions.
-
-*** DELETE OR MODIFY THIS README WHEN YOU CLONE THIS REPO FOR USE IN AN APP ***
+This project is for creating a personal offline archive of webcomics for
+portability, or reading at your own rate. It is for personal use only, and
+should not be used to distribute copyrighted works without permission.
 
 Setup
 -----
