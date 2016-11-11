@@ -10,17 +10,21 @@ module.exports = {
       fileName: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: 'comic',
       },
       altText: Sequelize.TEXT,
       annotation: Sequelize.TEXT,
       sequenceNumber: Sequelize.INTEGER,
       comicId: {
         type: Sequelize.INTEGER,
+        unique: 'comic',
         references: {
           model: 'Comics',
           key: 'id',
         },
       },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
     });
   },
 

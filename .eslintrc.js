@@ -1,7 +1,8 @@
 module.exports = {
     'env': {
         'es6': true,
-        'node': true
+        'node': true,
+        'mocha': true,
     },
     'extends': '.eslint-airbnb/base.js',
     'parserOptions': {
@@ -36,7 +37,7 @@ module.exports = {
         'padded-blocks': 0,
         'prefer-arrow-callback': 0,
         'quotes': [ 2, 'single', 'avoid-escape' ],
-        'semi': 0,
+        'semi': 1,
         'space-before-function-paren': [ 2, 'never' ],
         'space-in-parens': 0,
         'new-cap': [2, {'capIsNewExceptions': ['STRING']}],

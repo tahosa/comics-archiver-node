@@ -72,7 +72,7 @@ function swagger(app) {
           if (err) return rej(err);
           return res(runner);
         })
-      )
+      );
   }
 }
 
@@ -87,7 +87,7 @@ function controllerize(app) {
   function controllerizer(req, res, next) {
     // returning null from a controller implies a 404
     if (res.promise === null) {
-      res.status(404).json('Not Found')
+      res.status(404).json('Not Found');
     }
 
     // Either nothing was returned, or it wasn't then-able, so pass it up the chain
@@ -104,7 +104,7 @@ function controllerize(app) {
       })
       .catch(err => {
         next(err);
-      })
+      });
   }
 }
 
@@ -120,10 +120,9 @@ function handleErrors(app) {
     const parsedError = {};
     if (err instanceof Error) {
       parsedError.message = err.message;
-      Error.captureStackTrace(parsedError, Error)
+      Error.captureStackTrace(parsedError, Error);
     }
-
-    req.log.error(err, 'Unexpect error has occurred');
+    // res.log.error(err, 'Unexpected error has occurred');
     res.json(parsedError);
   }
 }

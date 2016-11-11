@@ -1,29 +1,25 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  const Comic = sequelize.define('Comics', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+  const Comic = sequelize.define('Comic', {
     title: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true,
-      },
+      allowNull: false,
+    },
+    folder: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     author: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true,
-      },
+      allowNull: false,
     },
     description: DataTypes.TEXT,
     start: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         isUrl: true,
       },
     },
@@ -33,10 +29,9 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true,
       },
     },
-    linkRegex: DataTypes.STRING,
-    imgRegex: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    linkSelector: DataTypes.STRING,
+    imgSelector: DataTypes.STRING,
+    noteSelector: DataTypes.STRING,
   });
 
   return Comic;

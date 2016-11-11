@@ -1,22 +1,25 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  const Image = sequelize.define('Images', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+  const Image = sequelize.define('Image', {
     fileName: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true,
-      },
+      allowNull: false,
+      unique: 'comic',
     },
     altText: DataTypes.TEXT,
     annotation: DataTypes.TEXT,
     sequenceNumber: DataTypes.INTEGER,
-    comicId: DataTypes.INTEGER,
+    comicId: {
+      type: DataTypes.INTEGER,
+      unique: 'comic',
+    },
+  }, {
+    classMethods: {
+      associate(models) {
+        this.belongsTo(models.Comic);
+      },
+    },
   });
 
   return Image;

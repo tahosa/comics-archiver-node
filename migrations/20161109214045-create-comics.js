@@ -11,6 +11,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      folder: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       author: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -21,8 +26,9 @@ module.exports = {
         allowNull: false,
       },
       latest: Sequelize.STRING,
-      linkRegex: Sequelize.STRING,
-      imgRegex: Sequelize.STRING,
+      linkSelector: Sequelize.STRING,
+      imgSelector: Sequelize.STRING,
+      noteSelector: Sequelize.STRING,
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
     });
