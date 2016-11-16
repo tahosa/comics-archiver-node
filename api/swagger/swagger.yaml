@@ -111,6 +111,47 @@ paths:
           description: Server error
           schema:
             type: object
+  /comics/{comic}/page/{page}:
+    x-swagger-router-controller: image
+    get:
+      description: Get the page of comics
+      operationId: image_list
+      parameters:
+      - name: comic
+        in: path
+        description: ID of the comic
+        required: true
+        type: integer
+      - name: page
+        in: path
+        description: Page number to fetch
+        required: true
+        type: integer
+      - name: size
+        in: query
+        description: Number of comics to retun on the page
+        default: 25
+        type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            properties:
+              count:
+                type: integer
+              rows:
+                type: array
+                items:
+                  $ref: "#/definitions/Comic"
+        404:
+          description: Not found
+          schema:
+            type: object
+        500:
+          description: Server error
+          schema:
+            type: object
+
 # complex objects have schema definitions
 definitions:
   Comic:
