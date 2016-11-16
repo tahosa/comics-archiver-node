@@ -29,5 +29,5 @@ function create(req, res) {
 function put(req, res) {
   return Comic
     .findById(req.swagger.params.id.value)
-    .update(req.body);
+    .then(inst => inst.update(req.body));
 }

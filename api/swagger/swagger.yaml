@@ -92,6 +92,12 @@ paths:
         description: ID of the comic
         required: true
         type: integer
+      - name: body
+        in: body
+        description: Fields to update
+        required: true
+        schema:
+          $ref: "#/definitions/Comic"
       responses:
         200:
           description: Success
