@@ -12,9 +12,7 @@ module.exports = loadModels(__dirname, '');
 
 function loadModels(folder, prefix) {
   const options = {
-    logging(msg) {
-      debug(msg);
-    },
+    logging: debug,
   };
 
   const sequelize = new Sequelize(
