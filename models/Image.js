@@ -5,15 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     fileName: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: 'comic',
     },
     altText: DataTypes.TEXT,
     annotation: DataTypes.TEXT,
     sequenceNumber: DataTypes.INTEGER,
-    comicId: {
-      type: DataTypes.INTEGER,
-      unique: 'comic',
-    },
   }, {
     classMethods: {
       associate(models) {

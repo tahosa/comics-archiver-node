@@ -12,7 +12,7 @@ module.exports = controllerize({
 });
 
 function list(req, res) {
-  const offset = req.swagger.params.page.value * (req.swagger.params.size.value || 25);
+  const offset = (req.swagger.params.page.value - 1) * (req.swagger.params.size.value || 25);
   return Image.findAndCountAll({
     where: { comicId: req.swagger.params.comic.value },
     limit: req.swagger.params.size.value,
