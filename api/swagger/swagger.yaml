@@ -59,6 +59,33 @@ paths:
           description: Server error
           schema:
             type: object
+  /comics/bulk:
+    x-swagger-router-controller: comic
+    post:
+      description: Create a series of new comics
+      operationId: comic_bulkCreate
+      parameters:
+      - name: comics
+        in: body
+        description: JSON representation of the comic to be created
+        required: true
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/Comic"
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: "#/definitions/Comic"
+        400:
+          description: Bad request
+          schema:
+            type: object
+        500:
+          description: Server error
+          schema:
+            type: object
   /comics/{id}:
     x-swagger-router-controller: comic
     get:
