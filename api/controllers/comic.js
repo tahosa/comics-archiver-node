@@ -30,7 +30,7 @@ function create(req, res) {
 
 function bulkCreate(req, res) {
   return Bluebird
-    .map(req.swagger.params.comics.value, comic => Comic.create(comic))
+    .map(req.body, comic => Comic.create(comic))
     .tap( () => res.status(201) );
 }
 

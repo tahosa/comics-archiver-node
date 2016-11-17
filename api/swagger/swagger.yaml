@@ -119,7 +119,7 @@ paths:
         description: ID of the comic
         required: true
         type: integer
-      - name: body
+      - name: data
         in: body
         description: Fields to update
         required: true
@@ -156,6 +156,7 @@ paths:
         type: integer
       - name: size
         in: query
+        required: false
         description: Number of comics to retun on the page
         default: 25
         type: integer

@@ -1,14 +1,14 @@
 'use strict';
 const models = require('../models');
 const Crawler = require('../lib/crawler');
-const BPromise = require('bluebird');
+const Bluebird = require('bluebird');
 const yargs = require('yargs').argv;
 const env = require('../config/env');
 
 function downloadAll() {
   return models.Comic
     .findAll()
-    .then(comics => BPromise.map(comics, comic => download(comic)));
+    .then(comics => Bluebird.map(comics, comic => download(comic)));
 }
 
 function download(comic) {

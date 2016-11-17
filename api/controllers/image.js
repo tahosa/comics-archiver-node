@@ -6,33 +6,15 @@ const Image = models.Image;
 
 module.exports = controllerize({
   image_list: list,
-  image_get: get,
-  image_create: create,
-  image_put: put,
 });
 
 function list(req, res) {
-  const offset = (req.swagger.params.page.value - 1) * (req.swagger.params.size.value || 25);
+  const pageSize = (req.swagger.params.size) ? req.swagger.params.size.value : 25;
+  const offset = (req.swagger.params.page.value - 1) * pageSize;
+
   return Image.findAndCountAll({
     where: { comicId: req.swagger.params.comic.value },
-    limit: req.swagger.params.size.value,
+    limit: pageSize,
     offset,
   });
-}
-
-function get(req, res) {
-  return Image
-    .findById(req.swagger.params.id.value);
-}
-
-function create(req, res) {
-  return Image
-    .create(req.body)
-    .tap( () => res.status(201) );
-}
-
-function put(req, res) {
-  return Image
-    .findById(req.swagger.params.id.value)
-    .then(inst => inst.update(req.body));
 }

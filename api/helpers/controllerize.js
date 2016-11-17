@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const BPromise = require('bluebird');
+const Bluebird = require('bluebird');
 
 module.exports = function controllerize(obj) {
   return _.mapValues(obj, (value, key) => {
@@ -15,7 +15,7 @@ module.exports = function controllerize(obj) {
 function wrap(method, obj) {
   return function(req, res, next) {
     try {
-      const promise = BPromise.resolve( method.call(obj, req, res) );
+      const promise = Bluebird.resolve( method.call(obj, req, res) );
       _.assign(res, { promise });
       next();
     }
