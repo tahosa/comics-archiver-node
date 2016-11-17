@@ -5,3 +5,5 @@ coverage
 downloads/
 comics/
 comics.json
+.DS_Store
+Thumbs.db
