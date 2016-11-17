@@ -4,3 +4,4 @@ coverage
 .env
 downloads/
 comics/
+comics.json
