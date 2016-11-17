@@ -4,8 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const utils = require('../../../lib/utils');
 
-describe('utils', function() {
-  it('should normalize URLs', function() {
+describe('utils', () => {
+  it('should normalize URLs', () => {
     expect(utils.normalizeUrl('', 'http://example.com/my/path/here'))
       .to.equal('http://example.com/my/path/here');
 
@@ -37,7 +37,7 @@ describe('utils', function() {
       .to.equal('http://example.com/my/path/here');
   });
 
-  it('should strip urls for the filename', function() {
+  it('should strip urls for the filename', () => {
     expect(utils.trimImageSrc('http://example.com/my/path/to/image.jpg'))
       .to.equal('image.jpg');
 

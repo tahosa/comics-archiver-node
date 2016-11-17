@@ -2,7 +2,6 @@
 
 const httpMocks = require('node-mocks-http');
 const _ = require('lodash');
-const chai = require('chai');
 
 module.exports = {
   createHttpMockResponse,

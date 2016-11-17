@@ -1,9 +1,15 @@
 'use strict';
+
 const models = require('../models');
 const Crawler = require('../lib/crawler');
 const Bluebird = require('bluebird');
 const yargs = require('yargs').argv;
 const env = require('../config/env');
+
+module.exports = {
+  downloadAll,
+  download,
+};
 
 function downloadAll() {
   return models.Comic
@@ -19,4 +25,7 @@ function download(comic) {
   return crawler.crawl();
 }
 
-downloadAll();
+// only execute if not require()ed
+if (require.main === module) {
+  downloadAll();
+}

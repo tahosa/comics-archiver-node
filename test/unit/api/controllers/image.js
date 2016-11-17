@@ -14,7 +14,7 @@ let res;
 let next;
 let imageController;
 
-describe('image controller', function() {
+describe('image controller', () => {
 
   beforeEach( () => {
     imageController = proxyquire('../../../../api/controllers/image', {
@@ -25,15 +25,15 @@ describe('image controller', function() {
     next = sinon.spy();
   });
 
-  describe('list', function() {
-    it('should return a page of images for a given comic', function() {
+  describe('list', () => {
+    it('should return a page of images for a given comic', () => {
       req = testUtil.createHttpMockRequest({ comic: { value: 1 }, page: { value: 1 }, size: { value: 20 } });
       imageController.image_list(req, res, next);
 
       return expect(res.promise).to.eventually.deep.equal({ count: 20, rows: ['image1', 'image2'] });
     });
 
-    it('should have a default page size', function() {
+    it('should have a default page size', () => {
       req = testUtil.createHttpMockRequest({ comic: { value: 1 }, page: { value: 1 } });
       imageController.image_list(req, res, next);
 
@@ -45,9 +45,9 @@ describe('image controller', function() {
 function stubModels() {
   const modelsStub = {
     Image: {
-      findAndCountAll: sinon.spy(function(options) {
-        return Bluebird.resolve({ count: options.limit, rows: ['image1', 'image2'] });
-      }),
+      findAndCountAll: sinon.spy((options) =>
+        Bluebird.resolve({ count: options.limit, rows: ['image1', 'image2'] })
+      ),
     },
   };
   return modelsStub;

@@ -9,7 +9,7 @@ const Bluebird = require('bluebird');
 const sinon = require('sinon');
 chai.use(chaiAsPromised);
 
-describe('crawler', function() {
+describe('crawler', () => {
   const instance = {
     title: 'some fake title',
     folder: 'testfolder',
@@ -18,14 +18,12 @@ describe('crawler', function() {
     noteSelector: '.note',
     latest: 'http://example.com/latest',
     start: 'http://example.com/start',
-    update: sinon.spy(function() {
-      return Bluebird.resolve();
-    }),
+    update: sinon.spy(() => Bluebird.resolve()),
     id: 1,
   };
   let Crawler;
 
-  beforeEach(function() {
+  beforeEach(() => {
     Crawler = proxyquire('../../../lib/crawler',
       {
         requestPromise: stubRP(),
@@ -34,24 +32,24 @@ describe('crawler', function() {
       });
   });
 
-  afterEach(function() {
+  afterEach(() => {
     fs.remove('./testFolder');
   });
 
-  it('should be constructed correctly', function() {
+  it('should be constructed correctly', () => {
     const test = new Crawler(instance, '.');
     expect(test.instance).to.equal(instance);
     expect(fs.existsSync('./testFolder')).to.equal(true);
   });
 
-  it('should be able to find by selector', function() {
+  it('should be able to find by selector', () => {
     const test = new Crawler(instance, '.');
     expect(test.getNextUrl('<a class="link" href="/my/url"></a>').attr('href')).to.equal('/my/url');
     expect(test.getCurrentImage('<img class="image" src="/my/url"/>').attr('src')).to.equal('/my/url');
     expect(test.getNote('<p class="note">content here</p>').html()).to.equal('content here');
   });
 
-  it('should not create the folder if it exists', function() {
+  it('should not create the folder if it exists', () => {
     fs.mkdirSync('./testfolder');
     const fsStub = stubFs();
     Crawler = proxyquire('../../../lib/crawler',
@@ -67,12 +65,12 @@ describe('crawler', function() {
     expect(fsStub.mkdirSync.called).to.equal(false);
   });
 
-  describe('async operations', function() {
+  describe('async operations', () => {
     const requestPromise = stubRP();
     const request = stubRequest();
     const models = stubModels();
 
-    beforeEach(function() {
+    beforeEach(() => {
       Crawler = proxyquire('../../../lib/crawler',
         {
           'request-promise': requestPromise,
@@ -84,7 +82,7 @@ describe('crawler', function() {
         });
     });
 
-    it('should download an image', function() {
+    it('should download an image', () => {
       const test = new Crawler(instance, '.');
       test.download('http://example.com')
         .then(result => {
@@ -94,7 +92,7 @@ describe('crawler', function() {
         });
     });
 
-    it('should start crawling correctly', function() {
+    it('should start crawling correctly', () => {
       const test = new Crawler(instance, '.');
       test.download = sinon.spy();
       test.crawl();

@@ -14,7 +14,7 @@ let res;
 let next;
 let comicController;
 
-describe('image controller', function() {
+describe('image controller', () => {
 
   beforeEach( () => {
     comicController = proxyquire('../../../../api/controllers/comic', {
@@ -25,16 +25,16 @@ describe('image controller', function() {
     next = sinon.spy();
   });
 
-  describe('list', function() {
-    it('should return the list of comics', function() {
+  describe('list', () => {
+    it('should return the list of comics', () => {
       comicController.comic_list(req, res, next);
 
       return expect(res.promise).to.eventually.deep.equal(['comic1', 'comic2']);
     });
   });
 
-  describe('get', function() {
-    it('should return the comic with the given id', function() {
+  describe('get', () => {
+    it('should return the comic with the given id', () => {
       req = testUtil.createHttpMockRequest({ id: { value: 1 } });
       comicController.comic_get(req, res, next);
 
@@ -45,8 +45,8 @@ describe('image controller', function() {
     });
   });
 
-  describe('create', function() {
-    it('should return the list of comics', function() {
+  describe('create', () => {
+    it('should return the list of comics', () => {
       req.body = { data0: 0, data1: 1 };
       comicController.comic_create(req, res, next);
 
@@ -56,8 +56,8 @@ describe('image controller', function() {
     });
   });
 
-  describe('bulkCreate', function() {
-    it('should return the list of comics', function() {
+  describe('bulkCreate', () => {
+    it('should return the list of comics', () => {
       req.body = [{ data0: 0, data1: 1 }, { data2: 2, data3: 3 }];
       comicController.comic_bulkCreate(req, res, next);
 
@@ -67,8 +67,8 @@ describe('image controller', function() {
     });
   });
 
-  describe('put', function() {
-    it('should return the list of comics', function() {
+  describe('put', () => {
+    it('should return the list of comics', () => {
       req = testUtil.createHttpMockRequest({ id: { value: 1 } });
       req.body = { data4: 4 };
       comicController.comic_put(req, res, next);
