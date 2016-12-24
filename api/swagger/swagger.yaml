@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "0.1.0"
-  title: express-swagger-rest
+  title: Comics Archiver
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths
@@ -25,6 +25,7 @@ paths:
     get:
       description: Returns all comics
       operationId: comic_list
+      tags: [Comics]
       responses:
         200:
           description: JSON array of all comics
@@ -39,6 +40,7 @@ paths:
     post:
       description: Create a new comic
       operationId: comic_create
+      tags: [Comics]
       parameters:
       - name: comic
         in: body
@@ -64,6 +66,7 @@ paths:
     post:
       description: Create a series of new comics
       operationId: comic_bulkCreate
+      tags: [Comics]
       parameters:
       - name: comics
         in: body
@@ -91,6 +94,7 @@ paths:
     get:
       description: Returns the comic with the requested ID
       operationId: comic_get
+      tags: [Comics]
       parameters:
       - name: id
         in: path
@@ -113,6 +117,7 @@ paths:
     put:
       description: Make changes to the given comic
       operationId: comic_put
+      tags: [Comics]
       parameters:
       - name: id
         in: path
@@ -143,6 +148,7 @@ paths:
     get:
       description: Get the page of comics
       operationId: image_list
+      tags: [Comics]
       parameters:
       - name: comic
         in: path
